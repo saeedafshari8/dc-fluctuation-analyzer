@@ -1,0 +1,41 @@
+group 'com.taktazit.dc'
+version '1.0.0'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+//apply plugin: 'war'
+//
+//war {
+//    baseName = 'vas-eureka-server'
+//    version =  '1.0.0'
+//}
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR4'
+    }
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.cloud:spring-cloud-starter-hystrix')
+    compile('org.springframework.cloud:spring-cloud-starter-feign')
+}
